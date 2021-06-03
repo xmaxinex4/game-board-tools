@@ -1,0 +1,182 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Color {
+  Red
+  Pink
+  Orange
+  Yellow
+  Green
+  Teal
+  LightBlue
+  Blue
+  Purple
+  PastelRed
+  PastelPink
+  PastelOrange
+  PastelYellow
+  PastelGreen
+  PastelTeal
+  PastelLightblue
+  PastelBlue
+  PastelPurple
+}
+
+enum Permission {
+  Admin
+  User
+}
+
+model Collection {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  owners    User[]
+  games     Game[]
+}
+
+model Game {
+  id                  String       @id @default(cuid())
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  name                String
+  description         String
+  noPoints            Boolean?
+  highestWins         Boolean?
+  cooperative         Boolean?
+  usesTeams           Boolean?
+  urlThumb            String
+  year                Int
+  bggId               Int          @unique
+  urlImage            String
+  designers           String[]
+  publishers          String[]
+  artists             String[]
+  categories          String[]
+  families            String[]
+  minPlayers          Int
+  maxPlayers          Int
+  age                 Int
+  minPlaytime         Int
+  maxPlaytime         Int
+  mechanics           String[]
+  bggComplexityRating Float
+  Collection          Collection?  @relation(fields: [collectionId], references: [id])
+  collectionId        String?
+  play                Play[]
+  pollOption          PollOption[]
+}
+
+model Group {
+  id        String        @id @default(cuid())
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  name      String
+  members   GroupMember[]
+  polls     Poll[]
+  plays     Play[]
+}
+
+model GroupMember {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  group     Group    @relation(fields: [groupId], references: [id])
+  groupId   String
+  isAdmin   Boolean
+}
+
+model Play {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  date      DateTime @default(now())
+  startTime DateTime
+  endTime   DateTime
+  group     Group    @relation(fields: [groupId], references: [id])
+  groupId   String
+  game      Game     @relation(fields: [gameId], references: [id])
+  gameId    String
+  firstPlay Boolean
+  dontCount Boolean
+  scores    Score[]
+}
+
+model Poll {
+  id          String       @id @default(cuid())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  open        Boolean      @default(true)
+  title       String
+  pollOptions PollOption[]
+  author      User         @relation(fields: [authorId], references: [id])
+  authorId    String
+  group       Group        @relation(fields: [groupId], references: [id])
+  groupId     String
+  playDate    DateTime?
+}
+
+model PollOption {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  userVotes UserVote[] // Only one can be a veto
+  game      Game       @relation(fields: [gameId], references: [id])
+  gameId    String
+  poll      Poll       @relation(fields: [pollId], references: [id])
+  pollId    String
+
+  // A game option can only be listed once per poll
+  @@unique([gameId, pollId])
+}
+
+model Score {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  player    User     @relation(fields: [playerId], references: [id])
+  playerId  String
+  score     Float
+  play      Play?    @relation(fields: [playId], references: [id])
+  playId    String?
+}
+
+model User {
+  id               String        @id @default(cuid())
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  email            String        @unique
+  username         String        @unique
+  password         String
+  polls            Poll[]
+  color            String
+  gameCollections  Collection[]
+  groupMemberships GroupMember[]
+  resetToken       String?
+  resetTokenExpiry Float?
+  scores           Score[]
+  userVotes        UserVote[]
+}
+
+model UserVote {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  veto      Boolean    @default(false)
+  vote      PollOption @relation(fields: [voteId], references: [id])
+  voteId    String
+  voter     User       @relation(fields: [voterId], references: [id])
+  voterId   String
+
+  // A user can only vote once per poll
+  @@unique([voteId, voterId])
+}
