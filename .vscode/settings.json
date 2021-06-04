@@ -1,9 +1,7 @@
-// {
-//     "editor.formatOnSave": true
-// }
 {
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
-  "typescript.format.semicolons": "insert"
+  "typescript.format.semicolons": "insert",
+  "files.insertFinalNewline": true
 }

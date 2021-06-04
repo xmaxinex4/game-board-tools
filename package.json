@@ -1,9 +1,8 @@
 {
-  "name": "game-board-group-api",
+  "name": "game-board-tools-server",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "prisma generate",
     "dev": "npm run tsc && SET PORT=9000 && node dist/app.js",
     "start": "node dist/app.js",
     "format": "npx prettier --write . & npx eslint",
@@ -12,25 +11,21 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@prisma/client": "2.19.0",
     "@types/express": "^4.17.11",
-    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "path": "^0.12.7",
-    "prisma": "2.19.0"
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "@types/bcrypt": "^3.0.0",
-    "@types/jsonwebtoken": "^8.5.1",
     "eslint": "^7.22.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "typescript": "^4.2.3"
   },
   "engines": {
