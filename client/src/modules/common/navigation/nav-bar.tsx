@@ -2,44 +2,49 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { AppBar, Grid, Toolbar } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 
-import { UserNavMenuButton } from "./user-nav-menu-button";
-import { User } from "../../../api-types/user";
-import { ActiveGroupSelector } from "../../group/active-group-selector";
+import { MeepleCircleSiteNameInline } from "../../../images/components/meeple-circle-site-name-inline";
 
-import Logo from "../../../images/png/logo.png";
+import { GameToolsLink } from "./game-tools-link";
+
+const useStyles = makeStyles(() => ({
+  navBar: {
+    background: "transparent",
+    boxShadow: "none",
+  },
+  logo: {
+    width: "100%",
+    height: "100%",
+    maxWidth: "150px",
+    maxHeight: "75px",
+  },
+}));
 
 export interface NavBarProps {
-  showGroup?: boolean;
-  user: User;
+  homeLogo?: boolean;
 }
 
 export function NavBar(props: NavBarProps): React.ReactElement {
-  const { showGroup, user } = props;
+  const { homeLogo } = props;
+  const { navBar, logo } = useStyles();
 
   return (
     <Grid container>
-      <AppBar position="static">
+      <AppBar position="static" className={navBar}>
         <Toolbar>
-          <Grid container xs={12} alignItems="center" justify="space-between">
-            <Grid item>
-              <Link to="/">
-                <img alt="" src={Logo} />
-              </Link>
+          <Grid container alignItems="center" justify="space-between">
+            <Grid item className={logo}>
+              {
+                homeLogo && (
+                  <Link to="/">
+                    <MeepleCircleSiteNameInline />
+                  </Link>
+                )
+              }
             </Grid>
             <Grid item>
-              <Grid container spacing={2}>
-                {
-                  showGroup && (
-                    <Grid item>
-                      <ActiveGroupSelector />
-                    </Grid>
-                  )
-                }
-                <Grid item>
-                  <UserNavMenuButton user={user} />
-                </Grid>
-              </Grid>
+              <GameToolsLink />
             </Grid>
           </Grid>
         </Toolbar>

@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import valeriaMain from "./images/valeria-card-kingdoms-main.jpg";
+import valeriaMain from "./game-tools/images/valeria-card-kingdoms-main.jpg";
 
 const useStyles = makeStyles(() => ({
   cardMedia: {
@@ -26,7 +26,7 @@ type GameTool = {
   appLink: string;
 };
 
-export function GameToolsHome(): React.ReactElement {
+export function Home(): React.ReactElement {
   const { cardMedia } = useStyles();
 
   const gameTools: GameTool[] = [
@@ -34,7 +34,7 @@ export function GameToolsHome(): React.ReactElement {
       title: "Valeria Card Kingdoms Randomizer",
       description: "A card randomizer for Valeria Card Kingdoms",
       imgSrc: valeriaMain,
-      appLink: "/game-tools/valeria-card-kingdoms-randomizer",
+      appLink: "/valeria-card-kingdoms-randomizer",
     },
   ];
 

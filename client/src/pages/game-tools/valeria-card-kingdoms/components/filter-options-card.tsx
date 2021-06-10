@@ -113,7 +113,7 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
             </Grid>
           </Grid>
 
-          <Grid container item xs={11} alignItems="center" justify="space-between" className={smUp ? "" : noIconPadding}>
+          <Grid container item xs={11} alignItems="center" className={smUp ? "" : noIconPadding}>
             <Grid xs={8} item>
               <FormControlLabel
                 className={noMargin}
@@ -130,12 +130,9 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
                   </Grid>
                 )}
                 control={(
-                  <Switch className={hiddenSwitch} checked={base} onChange={handleCardSetFiltersChange} name="base" />
+                  <Switch checked={base} onChange={handleCardSetFiltersChange} name="base" />
                 )}
               />
-            </Grid>
-            <Grid item>
-              <Switch checked={base} onChange={handleCardSetFiltersChange} name="base" />
             </Grid>
           </Grid>
 
@@ -156,12 +153,9 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
                   </Grid>
                 )}
                 control={(
-                  <Switch className={hiddenSwitch} checked={crimsonSeas} onChange={handleCardSetFiltersChange} name="crimsonSeas" />
+                  <Switch checked={crimsonSeas} onChange={handleCardSetFiltersChange} name="crimsonSeas" />
                 )}
               />
-            </Grid>
-            <Grid item>
-              <Switch checked={crimsonSeas} onChange={handleCardSetFiltersChange} name="crimsonSeas" />
             </Grid>
           </Grid>
 
@@ -182,12 +176,9 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
                   </Grid>
                 )}
                 control={(
-                  <Switch className={hiddenSwitch} checked={flamesAndFrost} onChange={handleCardSetFiltersChange} name="flamesAndFrost" />
+                  <Switch checked={flamesAndFrost} onChange={handleCardSetFiltersChange} name="flamesAndFrost" />
                 )}
               />
-            </Grid>
-            <Grid item>
-              <Switch checked={flamesAndFrost} onChange={handleCardSetFiltersChange} name="flamesAndFrost" />
             </Grid>
           </Grid>
 
@@ -208,12 +199,9 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
                   </Grid>
                 )}
                 control={(
-                  <Switch className={hiddenSwitch} checked={gnollMonsterPack} onChange={handleCardSetFiltersChange} name="gnollMonsterPack" />
+                  <Switch checked={gnollMonsterPack} onChange={handleCardSetFiltersChange} name="gnollMonsterPack" />
                 )}
               />
-            </Grid>
-            <Grid item>
-              <Switch checked={gnollMonsterPack} onChange={handleCardSetFiltersChange} name="gnollMonsterPack" />
             </Grid>
           </Grid>
 
@@ -234,12 +222,9 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
                   </Grid>
                 )}
                 control={(
-                  <Switch className={hiddenSwitch} checked={peasantsAndKnights} onChange={handleCardSetFiltersChange} name="peasantsAndKnights" />
+                  <Switch checked={peasantsAndKnights} onChange={handleCardSetFiltersChange} name="peasantsAndKnights" />
                 )}
               />
-            </Grid>
-            <Grid item>
-              <Switch checked={peasantsAndKnights} onChange={handleCardSetFiltersChange} name="peasantsAndKnights" />
             </Grid>
           </Grid>
 
@@ -260,12 +245,9 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
                   </Grid>
                 )}
                 control={(
-                  <Switch className={hiddenSwitch} checked={shadowvale} onChange={handleCardSetFiltersChange} name="shadowvale" />
+                  <Switch checked={shadowvale} onChange={handleCardSetFiltersChange} name="shadowvale" />
                 )}
               />
-            </Grid>
-            <Grid item>
-              <Switch checked={shadowvale} onChange={handleCardSetFiltersChange} name="shadowvale" />
             </Grid>
           </Grid>
 
@@ -286,12 +268,9 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
                   </Grid>
                 )}
                 control={(
-                  <Switch className={hiddenSwitch} checked={undeadSamurai} onChange={handleCardSetFiltersChange} name="undeadSamurai" />
+                  <Switch checked={undeadSamurai} onChange={handleCardSetFiltersChange} name="undeadSamurai" />
                 )}
               />
-            </Grid>
-            <Grid item>
-              <Switch checked={undeadSamurai} onChange={handleCardSetFiltersChange} name="undeadSamurai" />
             </Grid>
           </Grid>
 

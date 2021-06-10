@@ -1,7 +1,7 @@
 {
-  "short_name": "GameBoardGroup",
-  "name": "Game Board Group",
-  "description": "Application for all your table top gaming groups needs! Also offers a variety of game-specific tools like randomizers!",
+  "short_name": "GameBoardTools",
+  "name": "Game Board Tools",
+  "description": "Collection of various game-specific tools like randomizers and set-up guides!",
   "icons": [
     {
       "src": "favicon.ico",
@@ -31,12 +31,8 @@
   ],
   "shortcuts": [
     {
-      "name": "Game Tools",
-      "url": "/game-tools"
-    },
-    {
       "name": "Valeria Card Kingdoms Randomizer",
-      "url": "/game-tools/valeria-card-kingdoms-randomizer"
+      "url": "/valeria-card-kingdoms-randomizer"
     }
   ],
   "start_url": ".",

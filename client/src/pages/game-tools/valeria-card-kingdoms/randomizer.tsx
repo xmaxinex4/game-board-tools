@@ -80,7 +80,7 @@ export function ValeriaCardKingdomsRandomizer(): React.ReactElement {
             </Grid>
           </Grid>
         </Grid>
-        <Grid container item spacing={2}>
+        <Grid container item spacing={3}>
           <Grid container justify="center" alignItems="flex-end" item spacing={1}>
             {firstRowCards.map((card) => (
               <Grid key={card.name} item xs={2}>
