@@ -44,7 +44,7 @@ export function NavBar(props: NavBarProps): React.ReactElement {
               }
             </Grid>
             <Grid item>
-              <GameToolsLink />
+              {/* <GameToolsLink /> */}
             </Grid>
           </Grid>
         </Toolbar>
