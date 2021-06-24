@@ -10,7 +10,7 @@ import { Home } from "./pages/home";
 function App() {
   return (
     <Page>
-      <NavBar homeLogo />
+      <NavBar />
       <Switch>
         <Route path="/valeria-card-kingdoms-randomizer" component={ValeriaCardKingdomsRandomizer} />
         <Route exact path="*" component={Home} />

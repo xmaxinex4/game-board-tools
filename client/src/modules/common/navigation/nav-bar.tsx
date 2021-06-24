@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { AppBar, Grid, Toolbar } from "@material-ui/core";
+import { AppBar, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { MeepleCircleSiteNameInline } from "../../../images/components/meeple-circle-site-name-inline";
-
-import { GameToolsLink } from "./game-tools-link";
+import { SiteLogoAndNameInline } from "../../../images/components/site-logo-and-name-inline";
 
 const useStyles = makeStyles(() => ({
   navBar: {
@@ -21,34 +19,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export interface NavBarProps {
-  homeLogo?: boolean;
-}
-
-export function NavBar(props: NavBarProps): React.ReactElement {
-  const { homeLogo } = props;
+export function NavBar(): React.ReactElement {
   const { navBar, logo } = useStyles();
 
   return (
-    <Grid container>
-      <AppBar position="static" className={navBar}>
-        <Toolbar>
-          <Grid container alignItems="center" justify="space-between">
-            <Grid item className={logo}>
-              {
-                homeLogo && (
-                  <Link to="/">
-                    <MeepleCircleSiteNameInline />
-                  </Link>
-                )
-              }
-            </Grid>
-            <Grid item>
-              {/* <GameToolsLink /> */}
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-    </Grid>
+    <AppBar position="static" className={navBar}>
+      <Toolbar>
+        <Link className={logo} to="/">
+          <SiteLogoAndNameInline />
+        </Link>
+      </Toolbar>
+    </AppBar>
   );
 }
