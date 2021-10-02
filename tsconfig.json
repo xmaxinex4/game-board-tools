@@ -1,17 +1,15 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es6",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist",
-    "skipLibCheck": true
-  },
-  "lib": [
-    "es2015"
+  "extends": "@tsconfig/create-react-app/tsconfig.json",
+  "include": [
+    "src/**/*"
   ],
   "exclude": [
-    "client",
-  ]
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "outDir": "build",
+    "skipLibCheck": true
+  }
 }

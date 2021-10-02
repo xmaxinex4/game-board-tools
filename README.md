@@ -1,5 +1,9 @@
-# game-board-tools
-Web App containing a collection of board game tools for anyone to use!
+## To Run App Locally and recompiles as you develop:
+run "npm run start"
 
-node.js backend
-react front end, no api app connection, static files only
+
+Design Choices:
+
+1. <Route> components can only exist in routes.tsx files (and app.tsx)
+2. Any component that passes props to makeStyles must have a <ComponentName>StylesProp Interface. This makes props more organized and helps to avoid spreading style props by mistake
+3. You should never have a <Grid item> without a <Grid container>. Don't split the item and its container into separate components, maintenance becomes a nightmare

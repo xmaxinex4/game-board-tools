@@ -1,34 +1,87 @@
 {
-  "name": "game-board-tools-server",
-  "version": "1.0.0",
-  "license": "MIT",
+  "name": "game-board-tools",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "npm run tsc && SET PORT=9000 && node dist/app.js",
-    "start": "node dist/app.js",
-    "format": "npx prettier --write . & npx eslint",
+    "start:local": "react-scripts start",
+    "start": "serve -n -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "eslint": "eslint",
-    "postinstall": "npm run tsc",
+    "postinstall": "npm run build",
     "tsc": "tsc"
   },
   "dependencies": {
-    "@types/express": "^4.17.12",
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "path": "^0.12.7"
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@mdi/js": "^6.2.95",
+    "@mdi/react": "^1.5.0",
+    "@mui/icons-material": "^5.0.1",
+    "@mui/material": "^5.0.2",
+    "@mui/styles": "^5.0.1",
+    "@react-hook/resize-observer": "^1.2.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^13.1.9",
+    "axios": "^0.21.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^10.0.0",
+    "browserslist": "^4.16.6",
+    "history": "^5.0.0",
+    "react": "^17.0.2",
+    "react-color": "^2.19.3",
+    "react-dom": "^17.0.2",
+    "react-native-svg": "^12.1.1",
+    "react-native-typescript-transformer": "^1.2.13",
+    "react-native-web": "^0.17.1",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "^4.0.3",
+    "serve": "^12.0.0",
+    "web-vitals": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
+    "@tsconfig/create-react-app": "^1.0.2",
+    "@types/express": "^4.17.12",
+    "@types/react": "^17.0.11",
+    "@types/react-color": "^3.0.4",
+    "@types/react-dom": "^17.0.7",
+    "@types/react-router": "^5.1.15",
+    "@types/react-router-dom": "^5.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "babel-plugin-react-native-web": "^0.17.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.26.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "typescript": "^4.3.2"
   },
-  "engines": {
-    "node": ">=10.0.0"
+  "resolutions": {
+    "react-scripts/eslint-webpack-plugin": "2.3.0"
   }
 }
