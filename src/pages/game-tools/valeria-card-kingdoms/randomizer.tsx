@@ -26,8 +26,10 @@ export function ValeriaCardKingdomsRandomizer(): React.ReactElement {
   const emptyCardSetFilters: ValeriaCardKingdomsSetFilters = {
     base: true,
     crimsonSeas: false,
+    fireTempleMonsterPack: false,
     flamesAndFrost: false,
     gnollMonsterPack: false,
+    kaharianMonsterPack: false,
     peasantsAndKnights: false,
     shadowvale: false,
     undeadSamurai: false,

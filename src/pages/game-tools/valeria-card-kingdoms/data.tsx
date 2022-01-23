@@ -78,20 +78,26 @@ import MonsterValley from "./images/monster-valley.jpg";
 import MonsterValcano from "./images/monster-volcano.jpg";
 import MonsterWoods from "./images/monster-woods.png";
 import MonsterKnolls from "./images/monster-knolls.png";
+import MonsterHellWasp from "./images/monster-hell-wasp.png";
+import MonsterKaharianHatchlings from "./images/monster-kaharian-hatchlings.png";
 
 import { CrimsonSeasSetIndicator } from "./images/set-indicators/crimson-seas";
+import { FireTempleMonsterPackSetIndicator } from "./images/set-indicators/fire-temple-monster-pack";
 import { FlamesAndFrostSetIndicator } from "./images/set-indicators/flames-and-frost";
 import { UndeadSamuraiSetIndicator } from "./images/set-indicators/undead-samurai";
 import { ShadowvaleSetIndicator } from "./images/set-indicators/shadowvale";
 import { GnollMonsterPackSetIndicator } from "./images/set-indicators/gnoll-monster-pack";
+import { KaharianMonsterPackSetIndicator } from "./images/set-indicators/kaharian-monster-pack";
 import { BaseSetIndicator } from "./images/set-indicators/base";
 import { PeasantsAndKnightsSetIndicator } from "./images/set-indicators/peasants-and-knights";
 
 export type ValeriaCardKingdomsSetFilters = {
   base: boolean;
   crimsonSeas: boolean;
+  fireTempleMonsterPack: boolean;
   flamesAndFrost: boolean;
   gnollMonsterPack: boolean;
+  kaharianMonsterPack: boolean;
   peasantsAndKnights: boolean; // exp04
   shadowvale: boolean;
   undeadSamurai: boolean; // exp
@@ -198,7 +204,7 @@ export const ValeriaCardKingdomsCardData: ValeriaCardKingdomsCard[] = [
     setIndicator: BaseSetIndicator,
     name: "Swamp",
     bucket: ValeriaCardKingdomsCardBucket.MONSTER,
-    sortOrder: 5.1,
+    sortOrder: 5.2,
     imgSrc: MonsterSwamp,
   },
   {
@@ -206,7 +212,7 @@ export const ValeriaCardKingdomsCardData: ValeriaCardKingdomsCard[] = [
     setIndicator: FlamesAndFrostSetIndicator,
     name: "Tundra",
     bucket: ValeriaCardKingdomsCardBucket.MONSTER,
-    sortOrder: 5.2,
+    sortOrder: 5.3,
     imgSrc: MonsterTundra,
   },
   {
@@ -704,6 +710,22 @@ export const ValeriaCardKingdomsCardData: ValeriaCardKingdomsCard[] = [
     bucket: ValeriaCardKingdomsCardBucket.MONSTER,
     sortOrder: 7.1,
     imgSrc: MonsterKnolls,
+  },
+  {
+    set: "fireTempleMonsterPack",
+    setIndicator: FireTempleMonsterPackSetIndicator,
+    name: "Hell Wasp",
+    bucket: ValeriaCardKingdomsCardBucket.MONSTER,
+    sortOrder: 9,
+    imgSrc: MonsterHellWasp,
+  },
+  {
+    set: "kaharianMonsterPack",
+    setIndicator: KaharianMonsterPackSetIndicator,
+    name: "Kaharian Hatchlings",
+    bucket: ValeriaCardKingdomsCardBucket.MONSTER,
+    sortOrder: 5.1,
+    imgSrc: MonsterKaharianHatchlings,
   },
 ];
 

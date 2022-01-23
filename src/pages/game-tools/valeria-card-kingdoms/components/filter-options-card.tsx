@@ -23,10 +23,12 @@ import { ValeriaCardKingdomsSetFilters } from "../data";
 import { BaseSetIndicator } from "../images/set-indicators/base";
 import { CrimsonSeasSetIndicator } from "../images/set-indicators/crimson-seas";
 import { GnollMonsterPackSetIndicator } from "../images/set-indicators/gnoll-monster-pack";
+import { KaharianMonsterPackSetIndicator } from "../images/set-indicators/kaharian-monster-pack";
 import { PeasantsAndKnightsSetIndicator } from "../images/set-indicators/peasants-and-knights";
 import { UndeadSamuraiSetIndicator } from "../images/set-indicators/undead-samurai";
 import { ShadowvaleSetIndicator } from "../images/set-indicators/shadowvale";
 import { FlamesAndFrostSetIndicator } from "../images/set-indicators/flames-and-frost";
+import { FireTempleMonsterPackSetIndicator } from "../images/set-indicators/fire-temple-monster-pack";
 
 const useStyles = makeStyles<Theme>((theme) => ({
   modalCard: {
@@ -78,8 +80,10 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
   const {
     base,
     crimsonSeas,
+    fireTempleMonsterPack,
     flamesAndFrost,
     gnollMonsterPack,
+    kaharianMonsterPack,
     peasantsAndKnights,
     shadowvale,
     undeadSamurai,
@@ -167,6 +171,29 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
                   <Grid container alignItems="center" spacing={1}>
                     {mdUp && (
                       <Grid item>
+                        <FireTempleMonsterPackSetIndicator />
+                      </Grid>
+                    )}
+                    <Grid item>
+                      <Typography>Fire Temple Monster Pack</Typography>
+                    </Grid>
+                  </Grid>
+                )}
+                control={(
+                  <Switch checked={fireTempleMonsterPack} onChange={handleCardSetFiltersChange} name="fireTempleMonsterPack" />
+                )}
+              />
+            </Grid>
+          </Grid>
+
+          <Grid container item xs={11} alignItems="center" justifyContent="space-between" className={mdUp ? "" : noIconPadding}>
+            <Grid item>
+              <FormControlLabel
+                className={noMargin}
+                label={(
+                  <Grid container alignItems="center" spacing={1}>
+                    {mdUp && (
+                      <Grid item>
                         <FlamesAndFrostSetIndicator />
                       </Grid>
                     )}
@@ -200,6 +227,29 @@ export function ValeriaCardKingdomsFilterOptionsCard(props: ValeriaCardKingdomsF
                 )}
                 control={(
                   <Switch checked={gnollMonsterPack} onChange={handleCardSetFiltersChange} name="gnollMonsterPack" />
+                )}
+              />
+            </Grid>
+          </Grid>
+
+          <Grid container item xs={11} alignItems="center" justifyContent="space-between" className={mdUp ? "" : noIconPadding}>
+            <Grid item>
+              <FormControlLabel
+                className={noMargin}
+                label={(
+                  <Grid container alignItems="center" spacing={1}>
+                    {mdUp && (
+                      <Grid item>
+                        <KaharianMonsterPackSetIndicator />
+                      </Grid>
+                    )}
+                    <Grid item>
+                      <Typography>Kaharian Monster Pack</Typography>
+                    </Grid>
+                  </Grid>
+                )}
+                control={(
+                  <Switch checked={kaharianMonsterPack} onChange={handleCardSetFiltersChange} name="kaharianMonsterPack" />
                 )}
               />
             </Grid>
