@@ -714,7 +714,7 @@ export const ValeriaCardKingdomsCardData: ValeriaCardKingdomsCard[] = [
   {
     set: "fireTempleMonsterPack",
     setIndicator: FireTempleMonsterPackSetIndicator,
-    name: "Hell Wasp",
+    name: "Fire Temple",
     bucket: ValeriaCardKingdomsCardBucket.MONSTER,
     sortOrder: 9,
     imgSrc: MonsterHellWasp,
@@ -722,7 +722,7 @@ export const ValeriaCardKingdomsCardData: ValeriaCardKingdomsCard[] = [
   {
     set: "kaharianMonsterPack",
     setIndicator: KaharianMonsterPackSetIndicator,
-    name: "Kaharian Hatchlings",
+    name: "Kaharian",
     bucket: ValeriaCardKingdomsCardBucket.MONSTER,
     sortOrder: 5.1,
     imgSrc: MonsterKaharianHatchlings,
