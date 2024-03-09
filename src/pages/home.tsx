@@ -30,13 +30,18 @@ type GameTool = {
 export function Home(): React.ReactElement {
   const { cardMedia } = useStyles();
 
-  const gameTools: GameTool[] = [
-    {
-      title: "Valeria Card Kingdoms Randomizer",
-      description: "A card randomizer for Valeria Card Kingdoms",
-      imgSrc: valeriaMain,
-      appLink: "/valeria-card-kingdoms-randomizer",
-    },
+  const gameTools: GameTool[] = [{
+    title: "Board Game Selector",
+    description: "Not sure what to play? Let our selector tool help you choose!",
+    imgSrc: valeriaMain,
+    appLink: "/board-game-selector",
+  },
+  {
+    title: "Valeria Card Kingdoms Randomizer",
+    description: "A card randomizer for Valeria Card Kingdoms",
+    imgSrc: valeriaMain,
+    appLink: "/valeria-card-kingdoms-randomizer",
+  },
   ];
 
   return (

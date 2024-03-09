@@ -10,7 +10,7 @@ import { ValeriaCardKingdomsFilterOptionsCard } from "./components/filter-option
 import { ValeriaCardKingdomsCardDisplay } from "./components/card-display";
 
 export function ValeriaCardKingdomsRandomizer(): React.ReactElement {
-  const cardSetFilterStorageKey = "valeria-card-kingdon-tool:sets";
+  const cardSetFilterStorageKey = "valeria-card-kingdom-tool:sets";
   const [isOptionsDialogOpen, setIsOptionsDialogOpen] = React.useState(false);
 
   const openOptionsDialog = () => {
