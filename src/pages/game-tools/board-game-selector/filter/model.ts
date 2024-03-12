@@ -1,4 +1,4 @@
-export type LibraryGameFilters = {
+export type GameFilters = {
   name?: string;
   minYearPublished?: string;
   complexityRange?: number[];
@@ -10,7 +10,7 @@ export type LibraryGameFilters = {
   maxPlayTime?: number;
   minAge?: number;
   maxAge?: number;
-  categoriesOrMechanics?: string[];
+  categoriesAndMechanics?: string[];
 };
 
 export const BggCategories = [

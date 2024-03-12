@@ -1,27 +1,71 @@
-/* eslint-disable react/jsx-props-no-spreading,no-unused-vars */
-
 import React, { useCallback, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { union } from "lodash";
 
 import {
   Autocomplete,
   Button,
+  Container,
   Grid,
   TextField,
+  Typography,
 } from "@mui/material";
 
-import { BggCategories, BggMechanics, LibraryGameFilters } from "./filter/model";
+import jsonQuery from "json-query";
+import { BggCategories, BggMechanics, GameFilters } from "./filter/model";
 import { SliderFilter } from "./filter/slider-filter";
 import { ComplexityFilter } from "./filter/complexity-filter";
+import { gameData } from "../data/boardgames";
+import { NumberSelectFilter } from "./filter/number-select-filter";
+import { GameDetails } from "./types";
+import { GameDetailDialog } from "./display/game-detail-dialog";
 
-export interface FilterFormProps {
-  onSubmit: () => void;
-}
+export function BoardGameSelector(): React.ReactElement {
+  const [gameDetailDialogOpen, setGameDetailDialogOpen] = useState(false);
+  const [filters, setFilters] = useState<GameFilters>({
+    name: "",
+    minYearPublished: "",
+    complexityRange: [0, 5],
+    minPlayers: 1,
+    maxPlayers: 7,
+    minPlayTime: 0,
+    maxPlayTime: 8,
+    minAge: 0,
+    maxAge: 21,
+    categoriesAndMechanics: [],
+  });
 
-export function BoardGameSelector(props: FilterFormProps): React.ReactElement {
-  const { onSubmit } = props;
-  const [filters, setFilters] = useState<LibraryGameFilters>({});
+  const [gameResult, setGameResult] = useState<GameDetails>({} as GameDetails);
+
+  // TODO: Build minimum year filter
+  // TODO: Fix range filters with board game group logic
+  const onSubmit = useCallback(() => {
+    const filteredResults = jsonQuery(`
+      games[
+        minAge>=${filters.minAge}
+        &minPlayers>=${filters.minPlayers}
+        &maxPlayers<=${filters.maxPlayers === 7 ? 200 : filters.maxPlayers}
+        &complexity>=${filters.complexityRange?.[0]}
+        &complexity<=${filters.complexityRange?.[1]}
+        &minPlayTime>=${filters.minPlayTime}
+        &maxPlayTime<=${filters.maxPlayTime === 8 ? 1000000 : filters.maxPlayTime} 
+        &categoriesAndMechanics:containsCategoriesAndMechanicsFilter()   
+      ]`, {
+      data: gameData,
+      locals: {
+        containsCategoriesAndMechanicsFilter(input) {
+          // make sure result filters out games that don't include categories and mechanics specified in the filter
+          return Array.isArray(input) && filters?.categoriesAndMechanics?.every((el) => input.includes(el));
+        },
+      },
+    });
+
+    setGameResult(filteredResults.value);
+    setGameDetailDialogOpen(true);
+  }, [filters]);
+
+  const onGameDetailDialogClose = () => {
+    setGameDetailDialogOpen(false);
+  };
 
   const onPlayerCountChange = useCallback((event: Event, value: number | number[]) => {
     setFilters({
@@ -38,11 +82,10 @@ export function BoardGameSelector(props: FilterFormProps): React.ReactElement {
     });
   }, [filters]);
 
-  const onMinAgeChange = useCallback((e, value: number | number[]) => {
+  const onMinAgeChange = useCallback((value: number) => {
     setFilters({
       ...filters,
-      minAge: typeof value === "number" ? value : value[0],
-      maxAge: typeof value === "number" ? value : value[1],
+      minAge: value,
     });
   }, [filters]);
 
@@ -61,7 +104,7 @@ export function BoardGameSelector(props: FilterFormProps): React.ReactElement {
     ) => {
       setFilters({
         ...filters,
-        categoriesOrMechanics: value,
+        categoriesAndMechanics: value,
       });
     },
     [filters],
@@ -137,72 +180,77 @@ export function BoardGameSelector(props: FilterFormProps): React.ReactElement {
   ];
 
   return (
-    <Grid container direction="column" spacing={2}>
-      <Grid item container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <SliderFilter
-            onSliderValueChange={onMinAgeChange}
-            label="Age"
-            min={0}
-            max={21}
-            marks={minAgeMarks}
-            filterValue={[filters.minAge || 0, filters.maxAge || 21]}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <ComplexityFilter
-            onComplexityChange={onComplexityChange}
-            filterValues={[filters.complexityRange?.[0] || 0, filters.complexityRange?.[1] || 5]}
-          />
-        </Grid>
-      </Grid>
-      <Grid container item>
-        <Grid item xs={12} sm={6}>
-          <SliderFilter
-            onSliderValueChange={onPlayerCountChange}
-            label="Player Count"
-            min={1}
-            max={7}
-            marks={playerCountMarks}
-            filterValue={[filters.minPlayers || 1, filters.maxPlayers || 7]}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <SliderFilter
-            filterValue={[filters.minPlayTime || 0, filters.maxPlayTime || 8]}
-            onSliderValueChange={onTimeChange}
-            label="Time"
-            min={0}
-            max={8}
-            step={0.5}
-            marks={timeMarks}
-          />
-        </Grid>
-      </Grid>
-      <Grid item>
-        <Autocomplete
-          sx={{ width: "100%" }}
-          multiple
-          id="category-filter"
-          options={union(BggCategories, BggMechanics)}
-          filterSelectedOptions
-          onChange={onCategoryAndMechanicsChange}
-          value={filters.categoriesOrMechanics}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Categories & Mechanics"
-              placeholder="Categories"
-              size="small"
+    <Container maxWidth="sm">
+      <Grid container direction="column" spacing={3}>
+        <Grid item container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <NumberSelectFilter
+              onValueChange={onMinAgeChange}
+              formTitle="Min Age"
+              options={minAgeMarks}
             />
-          )}
-        />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <ComplexityFilter
+              onComplexityChange={onComplexityChange}
+              filterValues={[filters.complexityRange?.[0] || 0, filters.complexityRange?.[1] || 5]}
+            />
+          </Grid>
+        </Grid>
+        <Grid container item>
+          <Grid item xs={12} sm={6}>
+            <SliderFilter
+              onSliderValueChange={onPlayerCountChange}
+              label="Player Count"
+              min={1}
+              max={7}
+              marks={playerCountMarks}
+              filterValue={[filters.minPlayers || 1, filters.maxPlayers || 7]}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <SliderFilter
+              filterValue={[filters.minPlayTime || 0, filters.maxPlayTime || 8]}
+              onSliderValueChange={onTimeChange}
+              label="Time"
+              min={0}
+              max={8}
+              step={0.5}
+              marks={timeMarks}
+            />
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Autocomplete
+            sx={{ width: "100%" }}
+            multiple
+            id="category-filter"
+            options={union(BggCategories, BggMechanics)}
+            filterSelectedOptions
+            onChange={onCategoryAndMechanicsChange}
+            value={filters.categoriesAndMechanics}
+            renderInput={(params) => (
+              <TextField
+              // eslint-disable-next-line react/jsx-props-no-spreading
+                {...params}
+                label="Categories & Mechanics"
+                placeholder="Categories"
+                size="small"
+              />
+            )}
+          />
+        </Grid>
+        <Grid item>
+          <Button fullWidth variant="outlined" onClick={onSubmit}>
+            Apply
+          </Button>
+        </Grid>
+        <Grid item sx={{ marginLeft: "auto" }}>
+          <Typography variant="caption" color="primary.main">Powered by BoardGameGeek</Typography>
+        </Grid>
+
+        <GameDetailDialog open={gameDetailDialogOpen} onClose={onGameDetailDialogClose} game={gameResult} />
       </Grid>
-      <Grid item>
-        <Button fullWidth variant="outlined" onClick={onSubmit}>
-          Apply
-        </Button>
-      </Grid>
-    </Grid>
+    </Container>
   );
 }

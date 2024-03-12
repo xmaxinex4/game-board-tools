@@ -23,7 +23,7 @@ module.exports = {
   rules: {
     // note you must disable the base rule as it can report incorrect errors
     "no-use-before-define": "off",
-    "quotes": [2, "double"],
+    quotes: [2, "double"],
     "max-len": [2, 150],
     "import/prefer-default-export": [0],
     "@typescript-eslint/no-use-before-define": ["error"],
