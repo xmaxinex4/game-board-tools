@@ -46,8 +46,8 @@ export function BoardGameSelector(): React.ReactElement {
         &maxPlayers<=${filters.maxPlayers === 7 ? 200 : filters.maxPlayers}
         &complexity>=${filters.complexityRange?.[0]}
         &complexity<=${filters.complexityRange?.[1]}
-        &minPlayTime>=${filters.minPlayTime}
-        &maxPlayTime<=${filters.maxPlayTime === 8 ? 1000000 : filters.maxPlayTime} 
+        &minPlayTime>=${!filters.minPlayTime ? 0 : filters.minPlayTime * 60}
+        &maxPlayTime<=${!filters.maxPlayTime || filters.maxPlayTime === 8 ? 1000000 : filters.maxPlayTime * 60} 
         &categoriesAndMechanics:containsCategoriesAndMechanicsFilter()   
       ]`, {
       data: gameData,

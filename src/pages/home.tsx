@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 
 import valeriaMain from "./game-tools/images/valeria-card-kingdoms-main.jpg";
+import boardgameSelectorMain from "./game-tools/images/collage-of-various-board-games.jpg";
 
 const useStyles = makeStyles(() => ({
   cardMedia: {
@@ -33,7 +34,7 @@ export function Home(): React.ReactElement {
   const gameTools: GameTool[] = [{
     title: "Board Game Selector",
     description: "Not sure what to play? Let our selector tool help you choose!",
-    imgSrc: valeriaMain,
+    imgSrc: boardgameSelectorMain,
     appLink: "/board-game-selector",
   },
   {
